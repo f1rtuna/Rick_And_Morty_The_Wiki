@@ -4,7 +4,7 @@ import f1rtuna2 from "../assets/logo2.png"
 
 export default function Footer() {
   return (
-    <div className='bg-zinc-900 w-full h-[8vh] text-white font-oswald p-2 flex items-center justify-center'>
+    <div className='relative bg-zinc-900 w-full h-[8vh] text-white font-oswald p-2 flex items-center justify-center'>
         <div className="w-[5%] h-full">
             <img src={f1rtuna2} className="w-full h-full"alt="" />
         </div>

@@ -1,33 +1,79 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
-import slime_background from './assets/slime_background.mp4'
-import RickAndMorty100Years from './assets/rick_and_morty_100.jpg'
+import Hero from './components/Hero'
+import searchBackground from './assets/search_background.png'
+import { FcSearch } from "react-icons/fc";
 import Footer from './components/Footer'
 import './App.css'
+import AllCharacters from './components/AllCharacters';
 
 function App() {
+
+  const [search, setSearch] = useState('')
+  const [searchFilter, setSearchFilter] = useState("characters") // Default to "characters"
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const handleSelectChange = (e) => {
+    setSearchFilter(e.target.value)
+  }
 
   return (
     <>
       <Navbar />
-      <video autoPlay loop muted className="relative w-full h-[82vh] object-cover mt-[10vh]">
-        <source src={slime_background} type="video/mp4" />
-      </video>
-      <div className="absolute top-[10vh] w-full h-[82vh] font-oswald text-white text-[1.8rem] p-5 bg-slate-900/55">
-        <div className="text-[1.9rem] w-full h-[35%] flex p-5 gap-10 bg-slate-950/75">
-          <div className="w-[20%] h-full border-4 border-white">
-            <img src={RickAndMorty100Years} className="w-full h-full shadow-lg" alt="" />
-          </div>
-          <div className="w-[80%] h-full p-2">
-            <h1 className='text-slate-100'> Welcome to THE WiKI for Rick and Morty</h1>
-            <p className='text-[1.2rem] pl-5 text-slate-200'>- A wiki made by a fan for Fans</p>
-
-            <div className="pt-6 text-[1.6rem]">A Fan of the show? Great here you'll find everything you can find about the episodes, characters, and locations!
-            To navigate the wiki simply utilize the navbar options above or our handy search bar below!
+      <Hero />
+      <div className="relative w-full h-[100vh] flex justify-center items-center"
+        style = {{ 
+                    background: `linear-gradient(to right, rgba(250,250,245,0.1), rgba(250,250,235,0.5)), url(${searchBackground})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                   }}
+      >
+        <div className="w-[90%] h-full p-5 bg-gray-50/85 font-oswald rounded-lg flex flex-col gap-5">
+          {/* Search Section */}
+          <div className="w-full h-[8%] bg-cyan-950/20 rounded-3xl flex items-center justify-center gap-2">
+            <select 
+              className='w-[9%] h-[50%] bg-cyan-950 text-white rounded-xl flex justify-center items-center p-1 cursor-pointer text-[1.3rem]'
+              value = {searchFilter}
+              onChange={handleSelectChange}>
+              <option value="characters">Characters</option>
+              <option value="episodes">Episodes</option>
+              <option value="locations">Locations</option>
+            </select>
+            <div className="w-[80%] h-[50%] flex justify-center items-center gap-2">
+              <input
+                className='w-[90%] h-full rounded-lg p-2 text-[1.5rem]'
+                type="text"
+                name="search"                
+                placeholder="Search for your favorite episodes, characters, or locations"
+                value = {search}
+                onChange={handleSearchChange}
+              />
+              <FcSearch className='w-[10%] h-full bg-cyan-950/95 rounded-lg cursor-pointer'/>
             </div>
           </div>
-      
+                   
+          {/* Title based on search */}
+          
+          <div className='w-full h-[5%] flex justify-center items-center text-[2.5rem] font-bold bg-white/85 text-zinc-600 shadow-md'>
+            {searchFilter === "characters" && <div>CHARACTERS</div>}
+            {searchFilter === "episodes" && <div>EPISODES</div>}
+            {searchFilter === "locations" && <div>LOCATIONS</div>}
+          </div>
+          
+
+          {/* Filter Cards based on search */}
+          <div className='h-[87%] w-full'>
+            {searchFilter === "characters" && (
+              <AllCharacters search={search} />
+            )}
+          </div>
+
         </div>
+          
+          
       </div>
       <Footer />
     </>
