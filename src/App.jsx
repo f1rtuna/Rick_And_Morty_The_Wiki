@@ -51,7 +51,9 @@ function App() {
                 value = {search}
                 onChange={handleSearchChange}
               />
-              <FcSearch className='w-[10%] h-full bg-cyan-950/95 rounded-lg cursor-pointer'/>
+              <FcSearch className='w-[10%] h-full bg-cyan-950/95 rounded-lg cursor-pointer' onClick={() => {
+                setSearch(search)
+              }}/>
             </div>
           </div>
                    
@@ -67,11 +69,15 @@ function App() {
           <div className='h-[87%] w-full'>
             {/* characters */}
             {searchFilter === "characters" && (
-              <AllCharacters search={search} />
+              <AllCharacters 
+                search={search}
+              />
             )}
             {/* episodes */}
             {searchFilter === "episodes" && (
-              <AllEpisodes search={search} />
+              <AllEpisodes 
+                search={search}
+              />
             )}
           </div>
 
