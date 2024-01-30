@@ -10,13 +10,13 @@ query Characters($name: String, $page: Int){
         prev
       },
       results {
+        id
         name
         species
         status
         type
         gender
         origin{name}
-        location {name}
         image
       },
     },
@@ -32,7 +32,6 @@ query Character($id: ID!){
         type
         gender
         origin{name}
-        location {name}
         image
       },
     },

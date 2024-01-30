@@ -6,6 +6,7 @@ import { FcSearch } from "react-icons/fc";
 import Footer from './components/Footer'
 import './App.css'
 import AllCharacters from './components/AllCharacters';
+import AllEpisodes from './components/AllEpisodes';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
     <>
       <Navbar />
       <Hero />
-      <div className="relative w-full h-[100vh] flex justify-center items-center"
+      <div className="relative w-full h-[140vh] flex justify-center items-center"
         style = {{ 
                     background: `linear-gradient(to right, rgba(250,250,245,0.1), rgba(250,250,235,0.5)), url(${searchBackground})`,
                     backgroundSize: 'cover',
@@ -40,14 +41,13 @@ function App() {
               onChange={handleSelectChange}>
               <option value="characters">Characters</option>
               <option value="episodes">Episodes</option>
-              <option value="locations">Locations</option>
             </select>
             <div className="w-[80%] h-[50%] flex justify-center items-center gap-2">
               <input
                 className='w-[90%] h-full rounded-lg p-2 text-[1.5rem]'
                 type="text"
                 name="search"                
-                placeholder="Search for your favorite episodes, characters, or locations"
+                placeholder="Search for your favorite episodes or characters"
                 value = {search}
                 onChange={handleSearchChange}
               />
@@ -60,14 +60,18 @@ function App() {
           <div className='w-full h-[5%] flex justify-center items-center text-[2.5rem] font-bold bg-white/85 text-zinc-600 shadow-md'>
             {searchFilter === "characters" && <div>CHARACTERS</div>}
             {searchFilter === "episodes" && <div>EPISODES</div>}
-            {searchFilter === "locations" && <div>LOCATIONS</div>}
           </div>
           
 
           {/* Filter Cards based on search */}
           <div className='h-[87%] w-full'>
+            {/* characters */}
             {searchFilter === "characters" && (
               <AllCharacters search={search} />
+            )}
+            {/* episodes */}
+            {searchFilter === "episodes" && (
+              <AllEpisodes search={search} />
             )}
           </div>
 

@@ -1,46 +1,45 @@
 import { useState } from 'react';
-import { GET_CHARACTERS } from '../queries/characters';
+import { GET_EPISODES } from '../queries/episodes';
 import { useQuery } from '@apollo/client';
-import CharacterCard from './CharacterCard';
+import EpisodeCard from './EpisodeCard';
 
 import React from 'react'
 
-export default function AllCharacters({search}) {
+export default function AllEpisodes({search}) {
     const [page, setPage] = useState(1) // Default to page 1
-    const getAllCharactersQuery = useQuery(GET_CHARACTERS, {variables: {name: search, page: page}})
-    
+    const getAllEpisodesQuery = useQuery(GET_EPISODES, {variables: {name: search, page: page}})
     return (
-        <div className='w-full h-[100%] bg-zinc-100/20 text-zinc-700 flex flex-col'>
+        <div className='w-full h-full bg-zinc-100/20 text-zinc-700'>
             {/* Loading */}
-            {getAllCharactersQuery.loading && (
+            {getAllEpisodesQuery.loading && (
                 <div className='w-full h-full flex justify-center items-center text-[3rem]'>Loading...</div>
             )}
 
             {/* Error */}
-            {getAllCharactersQuery.error && (
+            {getAllEpisodesQuery.error && (
                 <div className='w-full h-full flex justify-center items-center text-[3rem] text-red-500'>Error: Invalid Query</div>
             )}
 
             {/* Data fetched */}
             <div className="w-full h-[88%] grid grid-rows-4 grid-cols-5 gap-4">
-                {getAllCharactersQuery.data && getAllCharactersQuery.data.characters.results.map((character) => (
-                    <CharacterCard key={character.id} 
-                        id={character.id} 
-                        name={character.name}
-                        status={character.status}
-                        image={character.image}
-                        origin={character.origin.name}
+                {getAllEpisodesQuery.data && getAllEpisodesQuery.data.episodes.results.map((episode) => (
+                    <EpisodeCard key={episode.id} 
+                        id={episode.id} 
+                        name={episode.name}
+                        air_date={episode.air_date}
+                        created={episode.created}
+                        characters={episode.characters}
                     />
                 ))}
             </div>
-            {getAllCharactersQuery.data && getAllCharactersQuery.data.characters.info && (
+            {getAllEpisodesQuery.data && getAllEpisodesQuery.data.episodes.info && (
             <div className='w-full h-[8%] bg-zinc-200/20 flex justify-around items-center shadow-lg'>
-                {getAllCharactersQuery.data.characters.info.prev && (
+                {getAllEpisodesQuery.data.episodes.info.prev && (
                 <button 
                     className='rounded-lg border-4 p-3 bg-cyan-50 font-bold text-[1.5rem]'
                     onClick={() => setPage(page - 1)}>Previous</button>
                 )}
-                {getAllCharactersQuery.data.characters.info.next && (
+                {getAllEpisodesQuery.data.episodes.info.next && (
                 <button 
                     className='rounded-lg border-4 p-3 bg-cyan-50 font-bold text-[1.5rem]'
                     onClick={() => setPage(page + 1)}>Next</button>
