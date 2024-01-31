@@ -5,8 +5,7 @@ import CharacterCard from './CharacterCard';
 
 import React from 'react'
 
-export default function AllCharacters({search}) {
-    const [page, setPage] = useState(1) // Default to page 1
+export default function AllCharacters({search, page, setPage}) {
     const getAllCharactersQuery = useQuery(GET_CHARACTERS, {variables: {name: search, page: page}})
     
     return (
@@ -27,7 +26,6 @@ export default function AllCharacters({search}) {
                     <CharacterCard key={character.id} 
                         id={character.id} 
                         name={character.name}
-                        status={character.status}
                         image={character.image}
                         origin={character.origin.name}
                     />

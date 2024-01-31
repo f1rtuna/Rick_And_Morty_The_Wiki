@@ -5,8 +5,7 @@ import EpisodeCard from './EpisodeCard';
 
 import React from 'react'
 
-export default function AllEpisodes({search}) {
-    const [page, setPage] = useState(1) // Default to page 1
+export default function AllEpisodes({search, page, setPage}) {
     const getAllEpisodesQuery = useQuery(GET_EPISODES, {variables: {name: search, page: page}})
     return (
         <div className='w-full h-full bg-zinc-100/20 text-zinc-700'>
@@ -28,7 +27,6 @@ export default function AllEpisodes({search}) {
                         name={episode.name}
                         air_date={episode.air_date}
                         created={episode.created}
-                        characters={episode.characters}
                     />
                 ))}
             </div>

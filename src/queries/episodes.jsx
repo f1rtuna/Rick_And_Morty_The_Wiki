@@ -4,7 +4,6 @@ export const GET_EPISODES = gql`
 query Episodes($name: String, $page: Int){
     episodes ( page: $page, filter: {name: $name}){
       info {
-        count
         pages
         next
         prev
@@ -14,11 +13,6 @@ query Episodes($name: String, $page: Int){
         name
         air_date
         created
-        characters {
-            id
-            name
-            image
-        }
       },
     },
   }

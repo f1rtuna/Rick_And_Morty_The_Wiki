@@ -9,7 +9,7 @@ import AllCharacters from './components/AllCharacters';
 import AllEpisodes from './components/AllEpisodes';
 
 function App() {
-
+  const [page, setPage] = useState(1) // Default to page 1
   const [search, setSearch] = useState('')
   const [searchFilter, setSearchFilter] = useState("characters") // Default to "characters"
 
@@ -19,11 +19,11 @@ function App() {
 
   const handleSelectChange = (e) => {
     setSearchFilter(e.target.value)
+    setPage(1)
   }
 
   return (
     <>
-      <Navbar />
       <Hero />
       <div className="relative w-full h-[140vh] flex justify-center items-center"
         style = {{ 
@@ -53,6 +53,7 @@ function App() {
               />
               <FcSearch className='w-[10%] h-full bg-cyan-950/95 rounded-lg cursor-pointer' onClick={() => {
                 setSearch(search)
+                setPage(1)
               }}/>
             </div>
           </div>
@@ -71,12 +72,16 @@ function App() {
             {searchFilter === "characters" && (
               <AllCharacters 
                 search={search}
+                page={page}
+                setPage={setPage}
               />
             )}
             {/* episodes */}
             {searchFilter === "episodes" && (
               <AllEpisodes 
                 search={search}
+                page={page}
+                setPage={setPage}
               />
             )}
           </div>
