@@ -19,7 +19,7 @@ export default function Hero() {
                 <p className='text-[1.2rem] pl-5 text-slate-200'>- A wiki made by a fan for Fans</p>
 
                 <div className="pt-6 text-[1.6rem]">A Fan of the show? Great here you'll find everything you can find about the episodes and characters!
-                To navigate the wiki simply utilize the navbar options above or our handy search bar below to get more details on the episodes and characters of the show.
+                To navigate the wiki simply utilize the our handy search bar below to get more details on the episodes and characters of the show.
                 </div>
                 <div className="text-[1.5rem] italic p-10 text-slate-100">
                 <div className="">"When I Don’t Like Something About The World, I Change It."</div>
