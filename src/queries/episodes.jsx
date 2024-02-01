@@ -30,6 +30,7 @@ query Episode($id: ID!){
             id
             name
             image
+            origin{name}
         }
     },
 }

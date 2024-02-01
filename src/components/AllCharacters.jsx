@@ -1,12 +1,10 @@
-import { useState } from 'react';
-import { GET_CHARACTERS } from '../queries/characters';
-import { useQuery } from '@apollo/client';
+import useQueries from '../queries/useQueries';
 import CharacterCard from './CharacterCard';
 
 import React from 'react'
 
 export default function AllCharacters({search, page, setPage}) {
-    const getAllCharactersQuery = useQuery(GET_CHARACTERS, {variables: {name: search, page: page}})
+    const getAllCharactersQuery = useQueries('GET_CHARACTERS', {name: search, page: page})
     
     return (
         <div className='w-full h-[100%] bg-zinc-100/20 text-zinc-700 flex flex-col'>

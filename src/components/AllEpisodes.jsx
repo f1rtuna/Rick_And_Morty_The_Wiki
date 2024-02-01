@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import { GET_EPISODES } from '../queries/episodes';
-import { useQuery } from '@apollo/client';
+import useQueries from '../queries/useQueries';
 import EpisodeCard from './EpisodeCard';
 
 import React from 'react'
 
 export default function AllEpisodes({search, page, setPage}) {
-    const getAllEpisodesQuery = useQuery(GET_EPISODES, {variables: {name: search, page: page}})
+    const getAllEpisodesQuery = useQueries('GET_EPISODES', {name: search, page: page})
+
     return (
         <div className='w-full h-full bg-zinc-100/20 text-zinc-700'>
             {/* Loading */}

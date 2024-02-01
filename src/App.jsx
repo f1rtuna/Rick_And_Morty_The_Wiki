@@ -36,7 +36,7 @@ function App() {
           {/* Search Section */}
           <div className="w-full h-[8%] bg-cyan-950/20 rounded-3xl flex items-center justify-center gap-2">
             <select 
-              className='w-[9%] h-[50%] bg-cyan-950 text-white rounded-xl flex justify-center items-center p-1 cursor-pointer text-[1.3rem]'
+              className='w-[9%] h-[50%] bg-cyan-950 text-white rounded-xl flex justify-center items-center p-2 cursor-pointer text-[1.3rem]'
               value = {searchFilter}
               onChange={handleSelectChange}>
               <option value="characters">Characters</option>
