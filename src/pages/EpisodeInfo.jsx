@@ -48,10 +48,10 @@ export default function EpisodeInfo() {
                                             NAME: {getEpisodeQuery.data.episode.name}
                                         </li>
                                         <li>
-                                            AIR DATE: {getEpisodeQuery.data.episode.air_date}
+                                            AIR DATE: {new Date(getEpisodeQuery.data.episode.air_date).toLocaleDateString()}
                                         </li>
                                         <li>
-                                            CREATED: {getEpisodeQuery.data.episode.created}
+                                            CREATED: {new Date(getEpisodeQuery.data.episode.created).toLocaleTimeString()}
                                         </li>
                                     </ul>
                                 </div>
